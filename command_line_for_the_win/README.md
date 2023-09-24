@@ -1,7 +1,8 @@
-command_line_for_the_win:
-1- 
-task 0: Complete the first 9 tasks in CMD challenging.
-task 1: Complete the 9 next tasks.
+command_line_for_the_win:  
+
+1-  
+task 0: Complete the first 9 tasks in CMD challenging.  
+task 1: Complete the 9 next tasks.  
 task 2: Complete the 9 next tasks, getting to 27 total.
 ------------
 2-
