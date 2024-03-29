@@ -1,26 +1,15 @@
-# Setup New Ubuntu server with nginx
-
+#config server
 
 package { 'nginx':
 provider => 'apt',
 }
-
 exec {'hlbtn_page':
-command => '/usr/bin/sudo /bin/echo Holberton School > /var/www/html/index.nginx-debian.html',
+command => '/usr/bin/sudo /bin/echo Hello World! > /var/www/html/index.nginx-debian.html',
 }
+exec {'redirect_page':
 
-file {'/etc/nginx/sites-available/default':
-	content => 'server {
-    listen 80;
-    listen [::]:80 default_server;
-    root   /etc/nginx/html;
-    index  index.html;
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-    }
-}'
+command => '/usr/bin/sudo /bin/sed -i "66i rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default',
 }
-
 exec {'start_server':
 
 command => '/usr/bin/sudo /usr/sbin/service nginx start',
