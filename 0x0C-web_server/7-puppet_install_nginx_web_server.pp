@@ -1,16 +1,12 @@
 # Setup New Ubuntu server with nginx
 
-exec { 'update system':
-        command => '/usr/bin/apt-get update',
-}
 
 package { 'nginx':
-	ensure => 'installed',
-	require => Exec['update system']
+provider => 'apt',
 }
 
-file {'/var/www/html/index.html':
-	content => 'Hello World!'
+exec {'hlbtn_page':
+command => '/usr/bin/sudo /bin/echo Holberton School > /var/www/html/index.nginx-debian.html',
 }
 
 file {'/etc/nginx/sites-available/default':
@@ -25,8 +21,7 @@ file {'/etc/nginx/sites-available/default':
 }'
 }
 
+exec {'start_server':
 
-service {'nginx':
-	ensure => running,
-	require => Package['nginx']
+command => '/usr/bin/sudo /usr/sbin/service nginx start',
 }
