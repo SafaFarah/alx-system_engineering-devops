@@ -2,4 +2,5 @@
 # get Apache to run on the container and
 # to return a page containing Hello Holberton
 echo "Hello Holberton" > /var/www/html/index.html
-service apache2 start
+sudo service apache2 status
+service apache2 restart
