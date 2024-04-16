@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # nginx runs as nginx user,and  listens on all active IPs on port 8080
-chmod all+wrx  /etc/nginx/nginx.conf
+chmod ugo+wrx  /etc/nginx/nginx.conf
 sudo sed -i "s/80/8080/g" /etc/nginx/sites-available/default
 su nginx -c "service nginx restart"
