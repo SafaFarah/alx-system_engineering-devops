@@ -12,17 +12,18 @@ if __name__ == '__main__':
     api_url = "https://jsonplaceholder.typicode.com/users/"
     api_url = api_url + ID
     response = requests.get(api_url)
-    json = response.json()
-    USER_NAME = json.get('username')
+    json_data = response.json()
+    USER_NAME = json_data.get('username')
     api_url = "https://jsonplaceholder.typicode.com/todos/"
     response = requests.get(api_url, params={"userId": ID})
-    json = response.json()
-    FILE_NAME = ID + "." + "json"
-    dictionary = {ID: []}
-    for TASK in json:
+    json_data = response.json()
+    FILE_NAME = ID + ".json"
+    list_task = []
+    for TASK in json_data:
         title = TASK.get('title')
         completed = TASK.get('completed')
-        dictionary[ID].append({"task": title, "completed": completed,
-                              "username": USER_NAME})
+        list_task.append({"task": title, "completed": completed,
+                         "username": USER_NAME})
+    _dict = {ID: list_task}
     with open("FILE_NAME", "w") as outfile:
-        json.dump(dictionary, outfile)
+        json.dump(_dict, outfile)
