@@ -17,7 +17,7 @@ if __name__ == '__main__':
     api_url = "https://jsonplaceholder.typicode.com/todos/"
     response = requests.get(api_url, params={"userId": ID})
     json_data = response.json()
-    FILE_NAME = ID + ".json"
+    FILE_NAME = '{}.json'.format(ID)
     list_task = []
     for TASK in json_data:
         title = TASK.get('title')
@@ -25,5 +25,5 @@ if __name__ == '__main__':
         list_task.append({"task": title, "completed": completed,
                          "username": USER_NAME})
     _dict = {ID: list_task}
-    with open("FILE_NAME", "w") as outfile:
+    with open(FILE_NAME, "w") as outfile:
         json.dump(_dict, outfile)
